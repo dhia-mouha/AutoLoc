@@ -6,6 +6,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
@@ -32,5 +33,6 @@ public class Paiement {
     private ModePaiement modePaiement;
 
     @ManyToOne
+    @JoinColumn(name = "contrat_id", nullable = false)
     private Contrat contrat;
 }

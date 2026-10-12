@@ -1,12 +1,14 @@
 package tn.esprit.autoloc.domain;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
@@ -47,13 +49,18 @@ public class Vehicule {
     private StatutVehicule statut;
 
     @ManyToOne
+    @JoinColumn(name = "agence_id", nullable = false)
     private Agence agence;
 
-    @OneToMany(mappedBy = "vehicule")
+    @OneToMany(mappedBy = "vehicule", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Maintenance> maintenances = new ArrayList<>();
 
     @ManyToMany
-    @JoinTable(name = "vehicule_equipement")
+    @JoinTable(
+            name = "vehicule_equipement",
+            joinColumns = @JoinColumn(name = "vehicule_id"),
+            inverseJoinColumns = @JoinColumn(name = "equipement_id")
+    )
     private List<Equipement> equipements = new ArrayList<>();
 
     @OneToMany(mappedBy = "vehicule")
