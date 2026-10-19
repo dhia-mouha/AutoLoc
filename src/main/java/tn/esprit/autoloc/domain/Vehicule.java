@@ -33,7 +33,6 @@ public class Vehicule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVehicule;
 
-    @Column(nullable = false, unique = true, length = 20)
     private String immatriculation;
     @Column(nullable = false, length = 50)
     private String marque;
@@ -49,7 +48,7 @@ public class Vehicule {
     private StatutVehicule statut;
 
     @ManyToOne
-    @JoinColumn(name = "agence_id", nullable = false)
+    @JoinColumn(name = "agence_id")
     private Agence agence;
 
     @OneToMany(mappedBy = "vehicule", cascade = CascadeType.ALL, orphanRemoval = true)
