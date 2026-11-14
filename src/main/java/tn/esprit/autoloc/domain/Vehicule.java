@@ -1,5 +1,6 @@
 package tn.esprit.autoloc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.CascadeType;
@@ -50,6 +51,7 @@ public class Vehicule {
 
     @ManyToOne
     @JoinColumn(name = "agence_id")
+    @JsonIgnoreProperties({"employes", "vehicules"})
     private Agence agence;
 
     @OneToMany(mappedBy = "vehicule", cascade = CascadeType.ALL, orphanRemoval = true)

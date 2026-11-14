@@ -41,4 +41,9 @@ public class AgenceController {
     public Agence afficherAgence(@PathVariable("idAgence") Long idAgence) {
         return agenceService.getAgenceById(idAgence);
     }
+
+    @PostMapping("/ajouterAgenceEtAffecterVehicules")
+    public Agence ajouterAgenceEtAffecterVehicules(@RequestBody Agence agence) {
+        return agenceService.ajouterAgenceEtAffecterVehicules(agence);
+    }
 }

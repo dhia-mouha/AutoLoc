@@ -35,6 +35,5 @@ public class Agence {
     private List<Employe> employes = new ArrayList<>();
 
     @OneToMany(mappedBy = "agence", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private List<Vehicule> vehicules = new ArrayList<>();
 }
